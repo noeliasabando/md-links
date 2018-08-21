@@ -1,0 +1,19 @@
+{
+  "name": "scl-2018-01-fe-markdown",
+  "version": "1.0.0",
+  "description": "Proyecto Markdown",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noeliasabando/scl-2018-01-FE-markdown.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noeliasabando/scl-2018-01-FE-markdown/issues"
+  },
+  "homepage": "https://github.com/noeliasabando/scl-2018-01-FE-markdown#readme"
+}
