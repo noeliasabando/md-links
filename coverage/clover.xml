@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1534912779980" clover="3.2.0">
+  <project timestamp="1534912779981" name="All files">
+    <metrics statements="19" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="2" elements="24" coveredelements="8" complexity="0" loc="19" ncloc="19" packages="1" files="1" classes="1">
+      <file name="index.js" path="C:\Users\Noelia\Documents\proyectos laboratoria\scl-2018-01-FE-markdown\src\index.js">
+        <metrics statements="19" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="2"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+      </file>
+    </metrics>
+  </project>
+</coverage>
