@@ -4,6 +4,7 @@
 const Path = require("path")
 const Marked = require("marked");
 const fs = require("fs");
+const fetch = require('node-fetch');
 
 exports.mdLinks = function (path, options) {
   const promise = new Promise(function (resolve, reject) {    
@@ -19,11 +20,15 @@ exports.mdLinks = function (path, options) {
       links.forEach((link)=>{
         linksOk.push({
           href: link.href,
-          text:link.href,
+          text:link.text,
           file:Path.resolve(path),
         })
       })   
       resolve(linksOk);
+
+    /*   fetch(href).then((response) => {
+        console.log(response)
+      }) */
     });    
   });
   return promise;
