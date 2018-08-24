@@ -1,21 +1,31 @@
+#!/usr/bin/env node
+
 //index.js: Desde este archivo debes exportar una función (mdLinks).
-const Marked = require('marked');
-const fs = require('fs');
+const Path = require("path")
+const Marked = require("marked");
+const fs = require("fs");
 
 exports.mdLinks = function (path, options) {
-  const promise = new Promise(function (resolve, reject) {
-    resolve([
-      {
-        href: "www.google.com",
-        text: "Google",
-        file: "test.md"
+  const promise = new Promise(function (resolve, reject) {    
+    
+    fs.readFile(path, "utf8", function read(err, data){
+      if(err){
+        reject("Hubo un error al leer archivo");
+        throw err
       }
-    ]);
-    /* fs.readFile('ejemplo.md', function (err, data) {
-      return markdownLinkExtractor(data)
-    }); */
+ 
+      var links= markdownLinkExtractor(data); 
+      var linksOk= [];
+      links.forEach((link)=>{
+        linksOk.push({
+          href: link.href,
+          text:link.href,
+          file:Path.resolve(path),
+        })
+      })   
+      resolve(linksOk);
+    });    
   });
-
   return promise;
 };
 
@@ -40,10 +50,10 @@ function markdownLinkExtractor(markdown) {
     links.push({
       href: href,
       text: text,
-      title: title,
+      /* title: title, */
     });
   };
-  renderer.image = function (href, title, text) {
+ /*  renderer.image = function (href, title, text) {
     // Remove image size at the end, e.g. ' =20%x50'
     href = href.replace(/ =\d*%?x\d*%?$/, '');
     links.push({
@@ -51,7 +61,7 @@ function markdownLinkExtractor(markdown) {
       text: text,
       title: title,
     });
-  };
+  }; */
   Marked(markdown, { renderer: renderer });
 
   return links;

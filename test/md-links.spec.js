@@ -1,4 +1,5 @@
 const lib = require("../src/index");
+var esperado;
 
 test("mdLinks debe retornar promesa", ()=>{
   expect(lib.mdLinks("./test.md")).toBeInstanceOf(Promise);
