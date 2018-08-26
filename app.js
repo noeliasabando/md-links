@@ -2,7 +2,7 @@
 mdLinks = require("./src/index")
 
 /* console.log(mdLinks.mdLinks("C:/Users/Noelia/Documents/proyectos laboratoria/pinterest/readme.md", 1)) */
-mdLinks.mdLinks("README.md", 1).then((links)=>{
+mdLinks.mdLinks("README.md", {validate:"false"}).then((links)=>{
   console.log(links)
 });
 

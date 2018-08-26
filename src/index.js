@@ -4,7 +4,7 @@
 const Path = require("path")
 const Marked = require("marked");
 const fs = require("fs");
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 
 exports.mdLinks = function (path, options) {
   const promise = new Promise(function (resolve, reject) {
@@ -19,30 +19,38 @@ exports.mdLinks = function (path, options) {
       var linksOk = [];
       
       links.forEach((link) => {
-        fetch(link.href).then((response) => {        
+        if(options.validate===true && options.hasOwnProperty("validate")){
+          fetch(link.href).then((response) => {        
+            linksOk.push({
+              href: link.href,
+              text: link.text,
+              file: Path.resolve(path),
+              status: response.status,
+              ok: response.ok,
+            })
+            if(linksOk.length=== links.length){
+              resolve(linksOk);
+            }
+          }).catch((error)=> {  
+            console.log(error)    
+            linksOk.push({
+              href: link.href,
+              text: link.text,
+              file: Path.resolve(path),
+              status: "Fail",
+              ok: "Fail",
+            })
+            if(linksOk.length=== links.length){
+              resolve(linksOk);
+            }
+          }); 
+        }else{
           linksOk.push({
             href: link.href,
             text: link.text,
             file: Path.resolve(path),
-            status: response.status,
-            ok: response.ok,
           })
-          if(linksOk.length=== links.length){
-            resolve(linksOk);
-          }
-        }).catch((error)=>{  
-          console.log(error)    
-          linksOk.push({
-            href: link.href,
-            text: link.text,
-            file: Path.resolve(path),
-            status: "Url no existe",
-            ok: "Url no existe",
-          })
-          if(linksOk.length=== links.length){
-            resolve(linksOk);
-          }
-        }); 
+        }
       })
     });
   });
