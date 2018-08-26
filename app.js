@@ -5,3 +5,4 @@ mdLinks = require("./src/index")
 mdLinks.mdLinks("README.md", 1).then((links)=>{
   console.log(links)
 });
+

@@ -7,29 +7,44 @@ const fs = require("fs");
 const fetch = require('node-fetch');
 
 exports.mdLinks = function (path, options) {
-  const promise = new Promise(function (resolve, reject) {    
-    
-    fs.readFile(path, "utf8", function read(err, data){
-      if(err){
+  const promise = new Promise(function (resolve, reject) {
+
+    fs.readFile(path, "utf8", function read(err, data) {
+      if (err) {
         reject("Hubo un error al leer archivo");
         throw err
       }
- 
-      var links= markdownLinkExtractor(data); 
-      var linksOk= [];
-      links.forEach((link)=>{
-        linksOk.push({
-          href: link.href,
-          text:link.text,
-          file:Path.resolve(path),
-        })
-      })   
-      resolve(linksOk);
 
-    /*   fetch(href).then((response) => {
-        console.log(response)
-      }) */
-    });    
+      var links = markdownLinkExtractor(data);
+      var linksOk = [];
+      
+      links.forEach((link) => {
+        fetch(link.href).then((response) => {        
+          linksOk.push({
+            href: link.href,
+            text: link.text,
+            file: Path.resolve(path),
+            status: response.status,
+            ok: response.ok,
+          })
+          if(linksOk.length=== links.length){
+            resolve(linksOk);
+          }
+        }).catch((error)=>{  
+          console.log(error)    
+          linksOk.push({
+            href: link.href,
+            text: link.text,
+            file: Path.resolve(path),
+            status: "Url no existe",
+            ok: "Url no existe",
+          })
+          if(linksOk.length=== links.length){
+            resolve(linksOk);
+          }
+        }); 
+      })
+    });
   });
   return promise;
 };
@@ -37,14 +52,12 @@ exports.mdLinks = function (path, options) {
 
 
 // Función necesaria para extraer los links usando marked
-// (tomada desde biblioteca del mismo nombre y modificada para el ejercicio)
 // Recibe texto en markdown y retorna sus links en un arreglo
 function markdownLinkExtractor(markdown) {
   const links = [];
 
   const renderer = new Marked.Renderer();
 
-  // Taken from https://github.com/markedjs/marked/issues/1279
   const linkWithImageSizeSupport = /^!?\[((?:\[[^\[\]]*\]|\\[\[\]]?|`[^`]*`|[^\[\]\\])*?)\]\(\s*(<(?:\\[<>]?|[^\s<>\\])*>|(?:\\[()]?|\([^\s\x00-\x1f()\\]*\)|[^\s\x00-\x1f()\\])*?(?:\s+=(?:[\w%]+)?x(?:[\w%]+)?)?)(?:\s+("(?:\\"?|[^"\\])*"|'(?:\\'?|[^'\\])*'|\((?:\\\)?|[^)\\])*\)))?\s*\)/;
 
   Marked.InlineLexer.rules.normal.link = linkWithImageSizeSupport;
@@ -55,18 +68,9 @@ function markdownLinkExtractor(markdown) {
     links.push({
       href: href,
       text: text,
-      /* title: title, */
     });
   };
- /*  renderer.image = function (href, title, text) {
-    // Remove image size at the end, e.g. ' =20%x50'
-    href = href.replace(/ =\d*%?x\d*%?$/, '');
-    links.push({
-      href: href,
-      text: text,
-      title: title,
-    });
-  }; */
+  
   Marked(markdown, { renderer: renderer });
 
   return links;
