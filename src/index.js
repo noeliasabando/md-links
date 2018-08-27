@@ -17,10 +17,10 @@ exports.mdLinks = function (path, options) {
 
       var links = markdownLinkExtractor(data);
       var linksOk = [];
-      
+
       links.forEach((link) => {
-        if(options.validate===true && options.hasOwnProperty("validate")){
-          fetch(link.href).then((response) => {        
+        if (options.hasOwnProperty("validate") && options.validate === true) {
+          fetch(link.href).then((response) => {
             linksOk.push({
               href: link.href,
               text: link.text,
@@ -28,11 +28,11 @@ exports.mdLinks = function (path, options) {
               status: response.status,
               ok: response.ok,
             })
-            if(linksOk.length=== links.length){
+            if (linksOk.length === links.length) {
               resolve(linksOk);
             }
-          }).catch((error)=> {  
-            console.log(error)    
+          }).catch((error) => {
+            console.log(error)
             linksOk.push({
               href: link.href,
               text: link.text,
@@ -40,16 +40,19 @@ exports.mdLinks = function (path, options) {
               status: "Fail",
               ok: "Fail",
             })
-            if(linksOk.length=== links.length){
+            if (linksOk.length === links.length) {
               resolve(linksOk);
             }
-          }); 
-        }else{
+          });
+        } else {
           linksOk.push({
             href: link.href,
             text: link.text,
             file: Path.resolve(path),
           })
+          if (linksOk.length === links.length) {
+            resolve(linksOk);
+          }
         }
       })
     });
@@ -78,7 +81,7 @@ function markdownLinkExtractor(markdown) {
       text: text,
     });
   };
-  
+
   Marked(markdown, { renderer: renderer });
 
   return links;
