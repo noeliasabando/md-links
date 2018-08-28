@@ -12,6 +12,9 @@
   },
   "author": "",
   "license": "ISC",
+  "bin": {
+    "md-links": "bin/cli.js"
+  },
   "bugs": {
     "url": "https://github.com/noeliasabando/scl-2018-01-FE-markdown/issues"
   },

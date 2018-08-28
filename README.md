@@ -1,8 +1,8 @@
 <!-- # Markdown Links
 
 ## Preámbulo -->
- [Node.js](https://httpstat.us/418) 
- [Node.js](https://github.com/brackets-userland/brackets-eslint/blob/master/domain.js#L62) 
+<!--  [Node.js](https://httpstat.us/418) 
+ [Node.js](https://github.com/brackets-userland/brackets-eslint/blob/master/domain.js#L62)  -->
  
 [Markdown](https://es.wikipedia.org/wiki/Markdown) <!-- es un lenguaje de marcado -->
 <!-- ligero muy popular entre developers. Es usado en muchísimas plataformas que
