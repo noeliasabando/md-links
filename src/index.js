@@ -11,7 +11,7 @@ exports.mdLinks = function (path, options={}) {
 
     fs.readFile(path, "utf8", function read(err, data) {
       if (err) {
-        reject("Hubo un error al leer el archivo");
+        reject("Hubo un error al leer el archivo");//poner rreturn antes de reject????
         throw err
       }
 
@@ -88,7 +88,7 @@ function markdownLinkExtractor(markdown) {
 
   const renderer = new Marked.Renderer();
 
-  renderer.link = function (href, title, text) {
+  renderer.link = function (href, text) {
     links.push({
       href: href,
       text: text,

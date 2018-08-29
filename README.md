@@ -1,3 +1,115 @@
+<!-- README.md con descripción del módulo, instrucciones de instalación, uso y documentación del API. -->
+
+# Librería Markdown Links
+
+Esta **librería** (o biblioteca - _library_) fue creada con el lenguaje de 
+programación JavaScript, con el objetivo de que lea y analice archivos en 
+formato Markdown, para verificar los links que contengan y algunas propiedades
+de este, como href (URL encontrada), text (Texto que aparece dentro del link(<a>)),
+file (Ruta absoluta del archivo donde se encontró el link), line (línea donde 
+aparece link), status (código de respuesta HTTP) y ok (ok o fail, dependiendo 
+del status), estos dos últimos ligados a la opción **validate**.
+Estos datos son obtenidos al pasarle la ruta del archivo a analizar, ya sea 
+absoluta o relativa al directorio desde donde la estoy invocando.
+
+##Instrucciones de instalación
+
+##Uso
+
+Ya instalada nuestra librería, podemos comenzar a usarla de dos formas, la primera
+como módulo ejecutable (**CLI**) con el comando **md-links**, el cual para ser usado es necesario
+ingresar el comando **npm link** en la terminal. Hecho esto puedes utilizar **md-links**
+más la ruta del archivo que quieras analizar (ya sea absoluta o relativa al directorio 
+desde donde la estas invocando) más **--validate**, este último opcional, requerido solamente 
+si quieres obtener además la respuesta status y ok de tus links.
+La segunda opción de uso es como una interfaz en la que podemos importar nuestra función
+**mdLinks** con **require** en un archivo **js** para poder usarlo programáticamente, este debe 
+ser llamado en la terminal mediante **node** más el nombre del archivo **js** que creaste
+para importar la función.
+A continuación se mostrarán ejemplos de uso para ambos casos.
+
+##Ejemplos de uso
+
+###Utilización como comando (CLI)
+
+En terminal poner **npm link**, luego de esto puedes utilizar **md-links** como comando.
+En terminal, md-links más la ruta de tu archivo (absoluta o relativa) y la opción 
+**--validate**.
+
+`node <myPath> [--validate]` ó `node <myPath>`
+
+####Ejemplo con ruta relativa
+```sh
+$ md-links ./some/example.md --validate
+```
+
+```sh
+$ md-links ./some/example.md
+```
+
+####Ejemplo con ruta absoluta
+```sh
+$ md-links C:/Users/Some/Documents/proyectos some/pinterest/readme.md --validate
+```
+
+```sh
+$ md-links C:/Users/Some/Documents/proyectos some/pinterest/readme.md
+```
+
+###Utilización programática
+
+Esta librería contiene dos archivos **js**, uno es **index.js** el cual se encuentra en carpeta
+**src**, este archivo contiene función **mdLinks**, la cual debes importar en tu archivo **js**, 
+creado en la raíz del proyecto, como se muestra a continuación.
+
+En tu archivo **js**
+```js
+mdLinks = require("./src/index")
+
+//myPath hace referencia a la ruta de tu archivo, ya sea absoluta o relativa
+//Vale recordar que validate es opcional, si la requieres es true, sino false
+mdLinks.mdLinks("myPath", {validate:true}).then((links)=>{
+console.log(links)
+});
+```
+En terminal, node más nombre de tu archivo **js**, por ejemplo node app.js.
+
+`node <myPath>`
+
+ ##Versiones
+
+ ##Palabras claves
+
+ ## Preámbulo
+ 
+[Markdown](https://es.wikipedia.org/wiki/Markdown)  es un lenguaje de marcado 
+ligero muy popular entre developers. Es usado en muchísimas plataformas que
+manejan texto plano (GitHub, foros, blogs, ...), y es muy común
+encontrar varios archivos en ese formato en cualquier tipo de repositorio
+(empezando por el tradicional `README.md`).
+
+Estos archivos `Markdown` normalmente contienen _links_ (vínculos/ligas) que
+muchas veces están rotos o ya no son válidos y eso perjudica mucho el valor de
+la información que se quiere compartir.
+
+Dentro de una comunidad de código abierto, nos han propuesto crear una
+herramienta usando [Node.js](https://nodejs.org/), que lea y analice archivos
+en formato `Markdown`, para verificar los links que contengan y reportar
+algunas estadísticas.
+
+## Introducción
+
+[Node.js](https://nodejs.org/es/) es un entorno de ejecución para JavaScript
+construido con el [motor de JavaScript V8 de Chrome](https://developers.google.com/v8/).
+Esto nos va a permitir ejecutar JavaScript en el entorno del sistema operativo,
+ya sea tu máquina o un servidor, lo cual nos abre las puertas para poder interactuar con
+el sistema operativo, sistema de archivos, redes, etc...
+En este proyecto nos alejamos un poco del navegador para construir un programa
+que se ejecute usando Node.js, donde aprenderemos sobre cómo interactuar con el
+sistema, archivos y con el entorno (proceso, env, stdin/stdout/stderr), ...
+
+
+
 <!-- # Markdown Links
 
 ## Preámbulo -->
