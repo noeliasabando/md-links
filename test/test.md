@@ -1,3 +1,4 @@
-[Hola](ww.holita.xs)
+[Hola](http://ww.holita.xs)
 # Preámbulo
-[Google](www.google.com)
+[Google](https://www.google.com)
+[Error](https://httpstat.us/418) 

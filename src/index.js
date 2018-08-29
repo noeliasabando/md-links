@@ -11,34 +11,53 @@ exports.mdLinks = function (path, options={}) {
 
     fs.readFile(path, "utf8", function read(err, data) {
       if (err) {
-        reject("Hubo un error al leer archivo");
+        reject("Hubo un error al leer el archivo");
         throw err
       }
 
       var links = markdownLinkExtractor(data);
       var linksOk = [];
+      var separador= "\n";
+
+      var lineas= data.split(separador); 
 
       links.forEach((link) => {
+        let linea= 0;
+        lineas.forEach((lineaActual, index)=>{
+          let linkEncontrado=lineaActual.indexOf(`[${link.text}](${link.href})`)
+          if(linkEncontrado >=0){
+            linea= index+1;
+          }
+        });     
+
         if (options.hasOwnProperty("validate") && options.validate === true) {
           fetch(link.href).then((response) => {
+            let ok;
+            if(response.ok===true){
+              ok= "ok";
+            }else{
+              ok="fail"
+            }
+
             linksOk.push({
               href: link.href,
               text: link.text,
               file: Path.resolve(path),
+              line: linea,
               status: response.status,
-              ok: response.ok,
+              ok: ok,
             })
             if (linksOk.length === links.length) {
               resolve(linksOk);
             }
           }).catch((error) => {
-            console.log(error)
             linksOk.push({
               href: link.href,
               text: link.text,
               file: Path.resolve(path),
-              status: "Fail",
-              ok: "Fail",
+              line: linea,
+              status: "fail",
+              ok: "fail",
             })
             if (linksOk.length === links.length) {
               resolve(linksOk);
@@ -49,6 +68,7 @@ exports.mdLinks = function (path, options={}) {
             href: link.href,
             text: link.text,
             file: Path.resolve(path),
+            line: linea,
           })
           if (linksOk.length === links.length) {
             resolve(linksOk);
@@ -59,7 +79,6 @@ exports.mdLinks = function (path, options={}) {
   });
   return promise;
 };
-
 
 
 // Función necesaria para extraer los links usando marked
@@ -75,12 +94,6 @@ function markdownLinkExtractor(markdown) {
       text: text,
     });
   };
-
-  /* renderer.list= function(start){
-    links.push({
-      start:start,
-    })
-  } */
 
   Marked(markdown, { renderer: renderer });
 
