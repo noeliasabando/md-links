@@ -12,11 +12,13 @@ absoluta o relativa al directorio desde donde la estoy invocando.
 
 ## Instrucciones de instalación
 
-Para instalar y poder utilizar la librería debes hacerlo en la terminal, utilizando
+Para instalar y poder utilizar la librería debes hacerlo en la terminal utilizando
 `npm install https://github.com/noeliasabando/md-links`, esto permitirá que puedas 
-utilizarla en el proyecto en el cual estás trabajando. Si deseas que la librería quede
-de forma global para que sea utilizable desde cualquier proyecto en el que estés 
-trabajando, debes instalarla con `npm install -g https://github.com/noeliasabando/md-links`.
+utilizarla en el proyecto en el cual estás trabajando de forma programática, 
+como se explica más abajo.
+Si quieres que esta librería esté disponible para todos tu proyectos o deseas 
+ocupar el **CLI**, entonces debes instalarla globalmente con
+`npm install -g https://github.com/noeliasabando/md-links`.
 
 ## Uso
 
