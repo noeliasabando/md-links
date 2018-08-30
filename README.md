@@ -104,4 +104,10 @@ En terminal, `node` más nombre de tu archivo **js**, por ejemplo node app.js.
 
 `node <myPath>`
 
- 
+## Link packages npm
+
+[Packages npm](https://www.npmjs.com/package/noelia-md-links)
+
+## Link Planificación Trello
+
+[Trello](https://trello.com/b/lNcl2mQU/libreria)
