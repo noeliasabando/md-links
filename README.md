@@ -42,7 +42,7 @@ Puedes utilizar `md-links` como comando directamente en la terminal.
 En terminal, md-links más la ruta de tu archivo (absoluta o relativa) y la opción 
 `--validate`.
 
-`node <myPath> [--validate]` ó `node <myPath>`
+`md-links <myPath> [--validate]` ó `md-links <myPath>`
 
 #### Ejemplo con ruta relativa
 ```sh
@@ -55,12 +55,18 @@ $ md-links ./some/example.md
 
 #### Ejemplo con ruta absoluta
 ```sh
-$ md-links C:/Users/Some/Documents/proyectos some/pinterest/readme.md --validate
+$ md-links "C:/Users/Some/Documents/proyectos some/pinterest/readme.md" --validate
 ```
 
 ```sh
-$ md-links C:/Users/Some/Documents/proyectos some/pinterest/readme.md
+$ md-links "C:/Users/Some/Documents/proyectos some/pinterest/readme.md"
 ```
+Entre las palabras "proyectos y "some" de la ruta ejemplificada existe un 
+espacio, por lo cual se debe poner la ruta entrecomillas, para así indicar que 
+dicho espacio no significa el término de una ruta y el inicio de otra, sino que 
+es una completa. 
+Debes hacerlo así cada vez que utilices una ruta en la que haya uno o más espacios
+entre las palabras. 
 
 ### Utilización programática
 
