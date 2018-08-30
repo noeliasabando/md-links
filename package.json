@@ -1,5 +1,5 @@
 {
-  "name": "md-links",
+  "name": "noelia-md-links",
   "version": "1.0.0",
   "description": "Proyecto Markdown",
   "main": "src/index.js",
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/noeliasabando/scl-2018-01-FE-markdown.git"
   },
-  "author": "",
+  "author": "Noelia Sabando Gonzalez",
   "license": "ISC",
   "keywords": [
     "markdown",
