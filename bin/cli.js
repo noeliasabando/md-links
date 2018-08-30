@@ -18,7 +18,7 @@ if (args[1] === "--validate") {
   options = { validate: false }
   mdLinks.mdLinks(args[0], options).then((links) => {
     links.forEach((link) => {
-      console.log(link.file + " " + link.href + " " + link.text)
+      console.log(link.file + ":"+ link.line+ " " + link.href + " " + link.text)
     })
   }).catch((error) => {
     console.error("Error > " + error);

@@ -1,5 +1,5 @@
 {
-  "name": "scl-2018-01-fe-markdown",
+  "name": "md-links",
   "version": "1.0.0",
   "description": "Proyecto Markdown",
   "main": "src/index.js",
@@ -12,6 +12,17 @@
   },
   "author": "",
   "license": "ISC",
+  "keywords": [
+    "markdown",
+    "cli",
+    "link",
+    "extractor",
+    "library",
+    "status",
+    "validator",
+    "package",
+    "pkg"
+  ],
   "bin": {
     "md-links": "bin/cli.js"
   },
