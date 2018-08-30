@@ -3,20 +3,20 @@
 Esta **librería** (o biblioteca - _library_) fue creada con el lenguaje de 
 programación JavaScript y Node, con el objetivo de que lea y analice archivos en 
 formato Markdown, para verificar los links que contengan y algunas propiedades
-de este, como href (URL encontrada), text (Texto que aparece dentro del link(`<a>`)),
-file (Ruta absoluta del archivo donde se encontró el link), line (línea donde 
-aparece link), status (código de respuesta HTTP) y ok (ok o fail, dependiendo 
-del status), estos dos últimos ligados a la opción **validate**.
+de este, como href (URL encontrada), text (Texto que aparece dentro del 
+link(`<a>`)), file (Ruta absoluta del archivo donde se encontró el link), 
+line (línea donde aparece del status), estos dos últimos ligados a la opción 
+**validate**.
 Estos datos son obtenidos al pasarle la ruta del archivo a analizar, ya sea 
 absoluta o relativa al directorio desde donde la estoy invocando.
 
 ## Instrucciones de instalación
 
 Para instalar y poder utilizar la librería debes hacerlo en la terminal, utilizando
-`npm install <github-user>/md-links`, esto permitirá que puedas utilizarla en el proyecto
-en el cual estás trabajando. Si deseas que la librería quede de forma global para que sea 
-utilizable desde cualquier proyecto en el que estés trabajando, debes instalarla con
-`npm install -g <github-user>/md-links`.
+`npm install https://github.com/noeliasabando/md-links`, esto permitirá que puedas 
+utilizarla en el proyecto en el cual estás trabajando. Si deseas que la librería quede
+de forma global para que sea utilizable desde cualquier proyecto en el que estés 
+trabajando, debes instalarla con `npm install -g https://github.com/noeliasabando/md-links`.
 
 ## Uso
 
