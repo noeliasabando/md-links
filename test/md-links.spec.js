@@ -2,54 +2,113 @@ const lib = require("../src/index");
 var esperado;
 
 test("mdLinks debe retornar promesa", ()=>{
-  expect(lib.mdLinks("./test.md")).toBeInstanceOf(Promise);
+  expect(lib.mdLinks("./test/testOk.md")).toBeInstanceOf(Promise);
 });
 
 
 test("Promesa retorna Array de Objetos", ()=>{
-  lib.mdLinks("./test.md")
+  return lib.mdLinks("./test/testOk.md")
     .then(links => {
       expect(links).toEqual(expect.arrayContaining([expect.any(Object)]))
     })
-    .catch(console.error);
 });
 
 
 test("Reconoce Links", () => {
   esperado = [
     {
-      href: "www.google.com",
+      href: "https://www.google.com",
       text: "Google",
-      file: "test.md"
+      file: "C:\\Users\\Noelia\\Documents\\proyectos laboratoria\\md-links\\test\\testOk.md",
+      line: 1
     }
   ]
-
-  lib.mdLinks("./test.md")
+  return lib.mdLinks("./test/testOk.md")
     .then(links => {
       expect(links).toEqual(esperado);
     })
-    .catch(console.error);
-
 });
 
 
-test("Valida Links",()=>{
+test("Valida Links Ok",()=>{
   esperado= [
     {
-      href: "www.google.com",
+      href: "https://www.google.com",
       text: "Google",
-      file: "test.md",
-      status:"ok"
+      file: "C:\\Users\\Noelia\\Documents\\proyectos laboratoria\\md-links\\test\\testOk.md",
+      line: 1,
+      status:200,
+      ok: "ok",
     }
   ]
-
-  lib.mdLinks("./test.md", {validate: true })
+  return lib.mdLinks("./test/testOk.md",{validate: true })
     .then(links=>{
       expect(links).toEqual(esperado);
     })
-    .catch(console.error);
 })
 
+test("Obtener Link sin validar",()=>{
+  esperado= [
+    {
+      href: "https://www.google.com",
+      text: "Google",
+      file: "C:\\Users\\Noelia\\Documents\\proyectos laboratoria\\md-links\\test\\testOk.md",
+      line: 1,
+    }
+  ]
+  return lib.mdLinks("./test/testOk.md",{validate: false })
+    .then(links=>{
+      expect(links).toEqual(esperado);
+    })
+})
 
+test("Valida Links Fail",()=>{
+  esperado= [
+    {
+      href: "https://httpstat.us/418",
+      text: "Error",
+      file: "C:\\Users\\Noelia\\Documents\\proyectos laboratoria\\md-links\\test\\test418.md",
+      line: 1,
+      status:418,
+      ok: "fail",
+    }
+  ]
+  return lib.mdLinks("./test/test418.md", {validate:true})
+    .then(links=>{
+      expect(links).toEqual(esperado);
+    })
+})
+
+test("Obtener Link fail sin validar",()=>{
+  esperado= [
+    {
+      href: "https://httpstat.us/418",
+      text: "Error",
+      file: "C:\\Users\\Noelia\\Documents\\proyectos laboratoria\\md-links\\test\\test418.md",
+      line: 1,
+    }
+  ]
+  return lib.mdLinks("./test/test418.md",{validate: false })
+    .then(links=>{
+      expect(links).toEqual(esperado);
+    })
+})
+
+test("Validar Url inexistente",()=>{
+  esperado= [
+    {
+      href: "http://www.bxkscjd.com/",
+      text: "Url no existe",
+      file: "C:\\Users\\Noelia\\Documents\\proyectos laboratoria\\md-links\\test\\testUrlNoExiste.md",
+      line: 1,
+      ok: "fail",
+      status: "fail",
+    }
+  ]
+  return lib.mdLinks("./test/testUrlNoExiste.md",{validate: true })
+    .then(links=>{
+      expect(links).toEqual(esperado);
+    })
+}, 7000)
 
 

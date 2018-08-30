@@ -12,7 +12,7 @@ exports.mdLinks = function (path, options={}) {
     fs.readFile(path, "utf8", function read(err, data) {
       if (err) {
         reject("Hubo un error al leer el archivo");
-        throw err
+        return 
       }
 
       var links = markdownLinkExtractor(data);
