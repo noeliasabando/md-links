@@ -8,7 +8,7 @@ link(`<a>`)), file (Ruta absoluta del archivo donde se encontró el link),
 line (línea donde aparece del status), estos dos últimos ligados a la opción 
 **validate**.
 Estos datos son obtenidos al pasarle la ruta del archivo a analizar, ya sea 
-absoluta o relativa al directorio desde donde la estoy invocando.
+absoluta o relativa al directorio desde donde la estas invocando.
 
 ## Instrucciones de instalación
 
@@ -22,25 +22,26 @@ ocupar el **CLI**, entonces debes instalarla globalmente con
 
 ## Uso
 
-Ya instalada nuestra librería, podemos comenzar a usarla de dos formas, la primera
+Ya instalada la librería, podemos comenzar a usarla de dos formas, la primera
 como módulo ejecutable (**CLI**) con el comando `md-links`.
 Puedes utilizar `md-links` más la ruta del archivo que quieras analizar (ya sea 
-absoluta o relativa al directorio desde donde la estas invocando) más `--validate`,
-este último opcional, requerido solamente si quieres obtener además la respuesta status
-y ok de tus links.
-La segunda opción de uso es como una interfaz en la que podemos importar nuestra función
-`mdLinks` con `require` en un archivo **js** para poder usarlo programáticamente, este debe 
-ser llamado en la terminal mediante `node` más el nombre del archivo **js** que creaste
-para importar la función.
+absoluta o relativa al directorio desde donde la estas invocando) más 
+`--validate`, este último opcional, requerido solamente si quieres obtener 
+además la respuesta status y ok de tus links.
+La segunda opción de uso es como una interfaz en la que podemos importar nuestra
+función `mdLinks` con `require` en un archivo **js** para poder usarlo 
+programáticamente, este debe ser llamado en la terminal mediante `node` más el 
+nombre del archivo **js** que creaste para importar la función.
 A continuación se mostrarán ejemplos de uso para ambos casos.
 
 ## Ejemplos de uso
 
 ### Utilización como comando (CLI)
 
-Puedes utilizar `md-links` como comando directamente en la terminal.
-En terminal, md-links más la ruta de tu archivo (absoluta o relativa) y la opción 
-`--validate`.
+Puedes utilizar `md-links` como comando directamente en la terminal, siempre que
+hayas instalado la librería de forma global.
+En terminal, `md-links` más la ruta de tu archivo (absoluta o relativa) y la 
+opción `--validate`.
 
 `md-links <myPath> [--validate]` ó `md-links <myPath>`
 
@@ -62,7 +63,7 @@ $ md-links "C:/Users/Some/Documents/proyectos some/pinterest/readme.md" --valida
 $ md-links "C:/Users/Some/Documents/proyectos some/pinterest/readme.md"
 ```
 Entre las palabras "proyectos y "some" de la ruta ejemplificada existe un 
-espacio, por lo cual se debe poner la ruta entrecomillas, para así indicar que 
+espacio, por lo cual se debe poner la ruta entre comillas, para así indicar que 
 dicho espacio no significa el término de una ruta y el inicio de otra, sino que 
 es una completa. 
 Debes hacerlo así cada vez que utilices una ruta en la que haya uno o más espacios
@@ -80,11 +81,13 @@ siguiente interfaz:
 - `path`: Ruta absoluta o relativa al archivo. 
 
 - `options`: Un objeto con la siguiente propiedad:
-  - `validate`: Valor que determina si se desea validar los links encontrados en el archivo. (tipo de dato booleano)
+  - `validate`: Valor que determina si se desea validar los links encontrados en
+   el archivo. (tipo de dato booleano)
 
-Esta librería contiene dos archivos **js**, uno es **index.js** el cual se encuentra en carpeta
-`src`, este archivo contiene función `mdLinks`, la cual debes importar en tu archivo **js**, 
-creado en la raíz del proyecto, como se muestra a continuación.
+Esta librería contiene dos archivos **js**, uno es **index.js** el cual se 
+encuentra en carpeta `src`, este archivo contiene función `mdLinks`, la cual 
+debes importar en tu archivo **js**, creado en la raíz del proyecto, como se 
+muestra a continuación.
 
 En tu archivo **js**
 ```js
@@ -97,7 +100,7 @@ mdLinks.mdLinks("myPath", {validate:true}).then((links)=>{
 console.log(links)
 });
 ```
-En terminal, node más nombre de tu archivo **js**, por ejemplo node app.js.
+En terminal, `node` más nombre de tu archivo **js**, por ejemplo node app.js.
 
 `node <myPath>`
 
