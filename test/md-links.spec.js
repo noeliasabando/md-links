@@ -1,5 +1,7 @@
+const Path = require("path");
 const lib = require("../src/index");
 var esperado;
+var root = Path.resolve("./");
 
 test("mdLinks debe retornar promesa", ()=>{
   expect(lib.mdLinks("./test/testOk.md")).toBeInstanceOf(Promise);
@@ -19,7 +21,7 @@ test("Reconoce Links", () => {
     {
       href: "https://www.google.com",
       text: "Google",
-      file: "C:\\Users\\Noelia\\Documents\\proyectos laboratoria\\md-links\\test\\testOk.md",
+      file: Path.join(root,"test","testOk.md"),
       line: 1
     }
   ]
@@ -35,7 +37,7 @@ test("Valida Links Ok",()=>{
     {
       href: "https://www.google.com",
       text: "Google",
-      file: "C:\\Users\\Noelia\\Documents\\proyectos laboratoria\\md-links\\test\\testOk.md",
+      file: Path.join(root,"test","testOk.md"),
       line: 1,
       status:200,
       ok: "ok",
@@ -52,7 +54,7 @@ test("Obtener Link sin validar",()=>{
     {
       href: "https://www.google.com",
       text: "Google",
-      file: "C:\\Users\\Noelia\\Documents\\proyectos laboratoria\\md-links\\test\\testOk.md",
+      file: Path.join(root,"test","testOk.md"),
       line: 1,
     }
   ]
@@ -67,7 +69,7 @@ test("Valida Links Fail",()=>{
     {
       href: "https://httpstat.us/418",
       text: "Error",
-      file: "C:\\Users\\Noelia\\Documents\\proyectos laboratoria\\md-links\\test\\test418.md",
+      file: Path.join(root,"test","test418.md"),
       line: 1,
       status:418,
       ok: "fail",
@@ -84,7 +86,7 @@ test("Obtener Link fail sin validar",()=>{
     {
       href: "https://httpstat.us/418",
       text: "Error",
-      file: "C:\\Users\\Noelia\\Documents\\proyectos laboratoria\\md-links\\test\\test418.md",
+      file: Path.join(root,"test","test418.md"),
       line: 1,
     }
   ]
@@ -99,7 +101,7 @@ test("Validar Url inexistente",()=>{
     {
       href: "http://www.bxkscjd.com/",
       text: "Url no existe",
-      file: "C:\\Users\\Noelia\\Documents\\proyectos laboratoria\\md-links\\test\\testUrlNoExiste.md",
+      file: Path.join(root,"test","testUrlNoExiste.md"),
       line: 1,
       ok: "fail",
       status: "fail",
